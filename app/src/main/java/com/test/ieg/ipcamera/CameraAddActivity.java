@@ -11,4 +11,10 @@ public class CameraAddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera_add);
     }
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+    }
 }
