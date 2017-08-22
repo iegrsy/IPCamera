@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.test.ieg.ipcamera.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -24,7 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.test.ieg.ipcamera.GalleryActivity"></activity>
+        <activity android:name=".GalleryActivity" />
+        <activity android:name=".CameraAddActivity"></activity>
     </application>
 
 </manifest>

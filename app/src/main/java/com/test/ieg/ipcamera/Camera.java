@@ -33,16 +33,20 @@ public class Camera implements View.OnClickListener {
     private String cameraIp;
     private int cameraPort;
     private SurfaceView surfaceView;
+    private int surfaceWidth = 640;
+    private int surfaceHeight = 480;
     private Context context;
     private RtpMediaDecoder rtpMediaDecoder;
 
-    public Camera(String cameraName, String cameraIp, int cameraPort, SurfaceView surfaceView, Context context)
+    public Camera(String cameraName, String cameraIp, int cameraPort, SurfaceView surfaceView, int surfaceWidth, int surfaceHeight, Context context)
     {
-        this.cameraName = cameraName;
-        this.cameraIp = cameraIp;
-        this.cameraPort = cameraPort;
-        this.surfaceView = surfaceView;
+        setCameraName(cameraName);
+        setCameraIp(cameraIp);
+        setCameraPort(cameraPort);
+        setSurfaceView(surfaceView);
         this.context = context;
+        this.surfaceWidth = surfaceWidth;
+        this.surfaceHeight = surfaceHeight;
     }
 
     public void start()
@@ -68,7 +72,7 @@ public class Camera implements View.OnClickListener {
             e.printStackTrace();
         }
 
-        rtpMediaDecoder.setConfiguration(cameraIp,cameraPort,640,480);
+        rtpMediaDecoder.setConfiguration(cameraIp, cameraPort, surfaceWidth, surfaceHeight);
         rtpMediaDecoder.start();
 
         surfaceView.setOnClickListener(this);
@@ -90,10 +94,10 @@ public class Camera implements View.OnClickListener {
     {
         Log.i("configure settings",
                 "\nIP:PORT : " + wifiIpAddress() + ":" + rtpMediaDecoder.getDataStreamingPort() +
-                "\nResolution : " + rtpMediaDecoder.getResolution() +
-                "\nTransport Protocol : " + rtpMediaDecoder.getTransportProtocol() +
-                "\nVideo Codec : " + rtpMediaDecoder.getVideoCodec() +
-                "\nBuffer Type : " + rtpMediaDecoder.getBufferType());
+                        "\nResolution : " + rtpMediaDecoder.getResolution() +
+                        "\nTransport Protocol : " + rtpMediaDecoder.getTransportProtocol() +
+                        "\nVideo Codec : " + rtpMediaDecoder.getVideoCodec() +
+                        "\nBuffer Type : " + rtpMediaDecoder.getBufferType());
     }
 
     protected String wifiIpAddress()
