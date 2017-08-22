@@ -32,7 +32,7 @@ public class GalleryActivity extends AppCompatActivity {
 
         surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
 
-        camera = new Camera("camera","10.50.218.92","5006",surfaceView,getApplicationContext());
+        camera = new Camera("camera","10.50.218.92",5006,surfaceView,getApplicationContext());
         camera.start();
     }
 

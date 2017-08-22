@@ -58,9 +58,9 @@ public class RtpMediaDecoder implements Decoder, SurfaceHolder.Callback {
     public static final String CONFIG_USE_NIO = "USE_NIO";
     public static final String CONFIG_BUFFER_TYPE = "BUFFER_TYPE";
     public static final String CONFIG_RECEIVE_BUFFER_SIZE = "RECEIVE_BUFFER_SIZE_BYTES";
-    public static final int DATA_STREAMING_PORT = 5006;
-    public static final int SURFACE_WIDTH = 640;
-    public static final int SURFACE_HEIGHT = 480;
+    public int DATA_STREAMING_PORT = 5006;
+    public int SURFACE_WIDTH = 640;
+    public int SURFACE_HEIGHT = 480;
     public static final String TRANSPORT_PROTOCOL = "RTP";
     public static final String VIDEO_CODEC = "H.264";
 
@@ -73,16 +73,6 @@ public class RtpMediaDecoder implements Decoder, SurfaceHolder.Callback {
     public boolean useNio = true;
     public int receiveBufferSize = 500000;
     public String camIP = "10.50.218.88";
-
-    public String getCamIP()
-    {
-        return camIP;
-    }
-
-    public void setCamIP(String camIP)
-    {
-        this.camIP = camIP;
-    }
 
     private PlayerThread playerThread;
     private RtpMediaExtractor rtpMediaExtractor;
@@ -432,4 +422,43 @@ public class RtpMediaDecoder implements Decoder, SurfaceHolder.Callback {
             buffer.stop();
         }
     }
+
+
+    /**benim eklediklerim
+     *
+     * @return
+     */
+    public String getCamIP()
+    {
+        return camIP;
+    }
+
+    private void setCamIP(String camIP)
+    {
+        this.camIP = camIP;
+    }
+
+    public int getCamPort()
+    {
+        return DATA_STREAMING_PORT;
+    }
+
+    private void setCamPort(int camPort)
+    {
+        this.DATA_STREAMING_PORT = camPort;
+    }
+
+    private void setResolution(int width,int height)
+    {
+        SURFACE_WIDTH = width;
+        SURFACE_HEIGHT = height;
+    }
+
+    public void setConfiguration(String camIP,int port,int width,int height)
+    {
+        setCamIP(camIP);
+        setCamPort(port);
+        setResolution(width,height);
+    }
+
 }

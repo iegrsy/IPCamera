@@ -31,12 +31,12 @@ public class Camera implements View.OnClickListener {
 
     private String cameraName;
     private String cameraIp;
-    private String cameraPort;
+    private int cameraPort;
     private SurfaceView surfaceView;
     private Context context;
     private RtpMediaDecoder rtpMediaDecoder;
 
-    public Camera(String cameraName, String cameraIp, String cameraPort, SurfaceView surfaceView, Context context)
+    public Camera(String cameraName, String cameraIp, int cameraPort, SurfaceView surfaceView, Context context)
     {
         this.cameraName = cameraName;
         this.cameraIp = cameraIp;
@@ -68,13 +68,12 @@ public class Camera implements View.OnClickListener {
             e.printStackTrace();
         }
 
+        rtpMediaDecoder.setConfiguration(cameraIp,cameraPort,640,480);
         rtpMediaDecoder.start();
 
-        // listens to surface view click to restart client.
         surfaceView.setOnClickListener(this);
 
         showDebugInfo();
-
     }
 
     public void release()
@@ -123,22 +122,22 @@ public class Camera implements View.OnClickListener {
         return ipAddressString;
     }
 
-    public void setCameraName(String cameraName)
+    private void setCameraName(String cameraName)
     {
         this.cameraName = cameraName;
     }
 
-    public void setCameraIp(String cameraIp)
+    private void setCameraIp(String cameraIp)
     {
         this.cameraIp = cameraIp;
     }
 
-    public void setCameraPort(String cameraPort)
+    private void setCameraPort(int cameraPort)
     {
         this.cameraPort = cameraPort;
     }
 
-    public void setSurfaceView(SurfaceView surfaceView)
+    private void setSurfaceView(SurfaceView surfaceView)
     {
         this.surfaceView = surfaceView;
     }
@@ -153,7 +152,7 @@ public class Camera implements View.OnClickListener {
         return cameraIp;
     }
 
-    public String getCameraPort()
+    public int getCameraPort()
     {
         return cameraPort;
     }
