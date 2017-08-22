@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,17 +45,28 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        listCameras();
+    }
+
+    public void listCameras() {
+        FileOperations fileOperations = new FileOperations(getApplicationContext());
+
+        List<CameraInfo> cameraInfos = fileOperations.getCameraInfos();
+
+        for(CameraInfo cameraInfo : cameraInfos){
+            System.out.println(cameraInfo.ip);
+        }
+
     }
 
     @Override
     public void onBackPressed()
     {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START))
-        {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else
-        {
+        } else {
             super.onBackPressed();
         }
     }
@@ -75,8 +88,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings)
-        {
+        if (id == R.id.action_settings) {
             return true;
         }
 
@@ -90,32 +102,21 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera)
-        {
+        if (id == R.id.nav_camera) {
             // Handle the camera action
             Intent ıntent = new Intent(this, CameraAddActivity.class);
             startActivity(ıntent);
 
-        }
-        else if (id == R.id.nav_gallery)
-        {
+        } else if (id == R.id.nav_gallery) {
             Intent ıntent = new Intent(this, GalleryActivity.class);
             startActivity(ıntent);
-        }
-        else if (id == R.id.nav_slideshow)
-        {
+        } else if (id == R.id.nav_slideshow) {
 
-        }
-        else if (id == R.id.nav_manage)
-        {
+        } else if (id == R.id.nav_manage) {
 
-        }
-        else if (id == R.id.nav_share)
-        {
+        } else if (id == R.id.nav_share) {
 
-        }
-        else if (id == R.id.nav_send)
-        {
+        } else if (id == R.id.nav_send) {
 
         }
 

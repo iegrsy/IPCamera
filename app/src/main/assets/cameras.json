@@ -1,0 +1,45 @@
+{
+  "cameras": [
+    {
+      "name": "cam1",
+      "ip": "10.50.218.1",
+      "port": "5006",
+      "workspace": "arge"
+    },
+    {
+      "name": "cam2",
+      "ip": "10.50.218.2",
+      "port": "5006",
+      "workspace": "arge"
+    },
+    {
+      "name": "cam3",
+      "ip": "10.50.218.3",
+      "port": "5006",
+      "workspace": "arge"
+    },
+    {
+      "name": "cam4",
+      "ip": "10.50.218.4",
+      "port": "5006",
+      "workspace": "arge"
+    },
+    {
+      "name": "cam5",
+      "ip": "10.50.218.5",
+      "port": "5006",
+      "workspace": "arge"
+    },
+    {
+      "name": "cam6",
+      "ip": "10.50.218.6",
+      "port": "5006",
+      "workspace": "arge"
+    }
+  ],
+  "workspaces": [
+    "arge",
+    "lab",
+    "ev"
+  ]
+}
