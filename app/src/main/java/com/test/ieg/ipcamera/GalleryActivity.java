@@ -5,8 +5,11 @@ import android.net.wifi.WifiManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.c77.androidstreamingclient.lib.rtp.RtpMediaDecoder;
 
@@ -22,8 +25,10 @@ import java.util.Properties;
 public class GalleryActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.toString();
-    private SurfaceView surfaceView,surfaceView2,surfaceView3;
-    private Camera camera,camera2,camera3;
+    private SurfaceView surfaceView, surfaceView2, surfaceView3;
+    private Camera camera, camera2, camera3;
+    private LinearLayout linearLayout;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,18 +36,31 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
-        surfaceView2 = (SurfaceView) findViewById(R.id.surfaceView2);
-        surfaceView3 = (SurfaceView) findViewById(R.id.surfaceView3);
+        linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        button = (Button) findViewById(R.id.button2);
 
-        camera = new Camera("camera", "10.50.218.92", 5006, surfaceView, 640, 480, getApplicationContext());
-        camera.start();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final View view1 = inflater.inflate(R.layout.camera_view, null);
+                linearLayout.addView(view1, linearLayout.getChildCount() - 1);
+            }
+        });
 
-        camera2 = new Camera("camera", "10.50.218.92", 5008, surfaceView2, 640, 100, getApplicationContext());
-        camera2.start();
 
-        camera3 = new Camera("camera", "10.50.218.92", 5010, surfaceView3, 640, 200, getApplicationContext());
-        camera3.start();
+//        surfaceView = (SurfaceView) findViewById(R.id.surfaceView);
+//        surfaceView2 = (SurfaceView) findViewById(R.id.surfaceView2);
+//        surfaceView3 = (SurfaceView) findViewById(R.id.surfaceView3);
+//
+//        camera = new Camera("camera", "10.50.218.92", 5006, surfaceView, 640, 480, getApplicationContext());
+//        camera.start();
+//
+//        camera2 = new Camera("camera", "10.50.218.92", 5008, surfaceView2, 640, 100, getApplicationContext());
+//        camera2.start();
+//
+//        camera3 = new Camera("camera", "10.50.218.92", 5010, surfaceView3, 640, 200, getApplicationContext());
+//        camera3.start();
 
     }
 
@@ -50,9 +68,9 @@ public class GalleryActivity extends AppCompatActivity {
     protected void onStop()
     {
         super.onStop();
-        camera.release();
-        camera2.release();
-        camera3.release();
+//        camera.release();
+//        camera2.release();
+//        camera3.release();
     }
 
     @Override

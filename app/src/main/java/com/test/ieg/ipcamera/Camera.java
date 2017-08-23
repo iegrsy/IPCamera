@@ -52,23 +52,19 @@ public class Camera implements View.OnClickListener {
     public void start()
     {
         Properties configuration = new Properties();
-        try
-        {
+        try {
             configuration.load(context.getAssets().open("configuration.ini"));
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         rtpMediaDecoder = new RtpMediaDecoder(surfaceView, configuration);
 
         OutputStream out;
-        try
-        {
+        try {
             out = context.openFileOutput("example.trace", Context.MODE_PRIVATE);
             rtpMediaDecoder.setTraceOutputStream(out);
-        } catch (FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -106,19 +102,16 @@ public class Camera implements View.OnClickListener {
         int ipAddress = wifiManager.getConnectionInfo().getIpAddress();
 
         // Convert little-endian to big-endian if needed
-        if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN))
-        {
+        if (ByteOrder.nativeOrder().equals(ByteOrder.LITTLE_ENDIAN)) {
             ipAddress = Integer.reverseBytes(ipAddress);
         }
 
         byte[] ipByteArray = BigInteger.valueOf(ipAddress).toByteArray();
 
         String ipAddressString;
-        try
-        {
+        try {
             ipAddressString = InetAddress.getByAddress(ipByteArray).getHostAddress();
-        } catch (UnknownHostException ex)
-        {
+        } catch (UnknownHostException ex) {
             Log.e(TAG, "Unable to get host address.");
             ipAddressString = null;
         }
@@ -171,11 +164,9 @@ public class Camera implements View.OnClickListener {
         String command = "ping -c 3 www.google.com";
 
         Process proc = null;
-        try
-        {
+        try {
             proc = Runtime.getRuntime().exec(command);
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -185,22 +176,17 @@ public class Camera implements View.OnClickListener {
                 new BufferedReader(new InputStreamReader(proc.getInputStream()));
 
         String line = "";
-        try
-        {
-            while ((line = reader.readLine()) != null)
-            {
+        try {
+            while ((line = reader.readLine()) != null) {
                 System.out.print(line + "\n");
             }
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        try
-        {
+        try {
             proc.waitFor();
-        } catch (InterruptedException e)
-        {
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
